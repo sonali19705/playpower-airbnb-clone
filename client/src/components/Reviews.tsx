@@ -42,19 +42,6 @@ const Reviews = ({ listing }: ReviewsProps) => {
     loadReviews();
   }, [listing._id]);
 
-  const averageRating = useMemo(() => {
-    if (!reviews.length) {
-      return listing.rating;
-    }
-
-    const total = reviews.reduce(
-      (sum, review) => sum + review.rating,
-      0
-    );
-
-    return total / reviews.length;
-  }, [reviews, listing.rating]);
-
   const ratingCounts = useMemo(() => {
     return {
       5: reviews.filter((review) => review.rating === 5).length,
